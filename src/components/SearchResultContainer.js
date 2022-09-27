@@ -16,8 +16,7 @@ const SearchResultContainer = () => {
   
    
   };
-  const [fightGif, setFightGif]
- = useState(searchGiphy(fighter))
+ 
 
    const handleInputChange = (e) => {
      const { target } = e;
@@ -45,11 +44,13 @@ const SearchResultContainer = () => {
     //  setResults(JSON.stringify(fighter));
     //  searchGiphy(JSON.stringify(fighter))
     ;
-     setFightGif(searchGiphy('Khamzat Chimaev'));
+     setFightGif(searchGiphy(fighter));
      console.log(fighter);
      console.log(fightGif);
 
    }
+   const [fightGif, setFightGif]
+   = useState(searchGiphy(submitFighter));
    
   // We want to run this method when the component first loads so that we have images of kittens to display
   // The second argument is the dependency array. This means that this method will only run when the component first loads
