@@ -13,7 +13,7 @@ const SearchResultContainer = () => {
   const searchGiphy = async (query) => {
     const response = await search(query);
     setResults(response.data.data);
-    setFighter(fighter)
+   
   };
 
    const handleInputChange = (e) => {
@@ -23,10 +23,14 @@ const SearchResultContainer = () => {
     //  const inputValue = target.value;
      if (inputType === "fighterName") {
       //  setFighter(fighter);
+      setFighter(inputValue)
        
-       searchGiphy(inputValue)
      }
    };
+   const submitFighter = (inputValue) =>{
+    searchGiphy(inputValue);
+    alert(inputValue)
+   }
   // We want to run this method when the component first loads so that we have images of kittens to display
   // The second argument is the dependency array. This means that this method will only run when the component first loads
   useEffect(() => {
@@ -49,6 +53,7 @@ const SearchResultContainer = () => {
         type="text"
         placeholder="Choose your fighter!"
       />
+      <button type="button" onClick={submitFighter}>Submit</button>
     </div>
   );
 };
