@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import ResultList from "./ResultList";
 
 // Import our search method
@@ -8,36 +8,56 @@ const SearchResultContainer = () => {
   // Declare a new state variable, "results"
   const [results, setResults] = useState([]);
   const [fighter, setFighter] = useState("");
-
+  
   // Method to get search results and set state
   const searchGiphy = async (query) => {
     const response = await search(query);
     setResults(response.data.data);
+  
    
   };
+  const [fightGif, setFightGif]
+ = useState(searchGiphy(fighter))
 
    const handleInputChange = (e) => {
      const { target } = e;
      const inputType = target.name;
      const inputValue = target.value;
+     
     //  const inputValue = target.value;
      if (inputType === "fighterName") {
       //  setFighter(fighter);
       setFighter(inputValue)
-       
+      // searchGiphy(JSON.stringify(inputValue));
+      
+      
      }
+    
+     
+  
+     
    };
-   const submitFighter = (inputValue) =>{
-    searchGiphy(inputValue);
-    alert(inputValue)
+   
+   const submitFighter = () => {
+   
+//LEFT OFF TRYING TO DISPLAY GIF
+    console.log(fighter);
+    //  setResults(JSON.stringify(fighter));
+    //  searchGiphy(JSON.stringify(fighter))
+    ;
+     setFightGif(searchGiphy('Khamzat Chimaev'));
+     console.log(fighter);
+     console.log(fightGif);
+
    }
+   
   // We want to run this method when the component first loads so that we have images of kittens to display
   // The second argument is the dependency array. This means that this method will only run when the component first loads
-  useEffect(() => {
-    searchGiphy("UFC Fight Night");
+//   useEffect(() => {
+//     searchGiphy("UFC Fight Night");
    
-  });
- ;
+//   });
+//  ;
   
 
   return (
@@ -53,7 +73,7 @@ const SearchResultContainer = () => {
         type="text"
         placeholder="Choose your fighter!"
       />
-      <button type="button" onClick={submitFighter}>Submit</button>
+      <button type="button" id="fightButt" onClick={submitFighter}>Submit</button>
     </div>
   );
 };
